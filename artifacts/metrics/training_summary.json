@@ -1,0 +1,94 @@
+{
+  "algorithm": "Random Forest Classifier",
+  "features": [
+    "air_temperature",
+    "process_temperature",
+    "rotational_speed",
+    "torque",
+    "tool_wear",
+    "type_code",
+    "temp_delta",
+    "power",
+    "strain",
+    "torque_speed_ratio"
+  ],
+  "best_params": {
+    "n_estimators": 300,
+    "min_samples_split": 5,
+    "min_samples_leaf": 4,
+    "max_features": "log2",
+    "max_depth": 14,
+    "class_weight": "balanced_subsample"
+  },
+  "search": {
+    "n_iter": 12,
+    "folds": 3,
+    "scoring": "f1_macro",
+    "best_score": 0.8151204423199108,
+    "seconds": 212.0
+  },
+  "cross_validation": {
+    "accuracy": {
+      "mean": 0.9200200276180992,
+      "std": 0.005049831702751977,
+      "folds": [
+        0.9172938835539407,
+        0.9267792330755878,
+        0.9165348101265823,
+        0.9141743701286932,
+        0.9253178412056917
+      ]
+    },
+    "f1_macro": {
+      "mean": 0.6846391272193926,
+      "std": 0.012815722115283378,
+      "folds": [
+        0.6766989913065256,
+        0.6817015616952649,
+        0.6724597445700248,
+        0.6832180227006988,
+        0.7091173158244487
+      ]
+    },
+    "precision_macro": {
+      "mean": 0.6084119348042659,
+      "std": 0.0178691939343508,
+      "folds": [
+        0.595674672392291,
+        0.6336328302194476,
+        0.5837858207297754,
+        0.6068006099373517,
+        0.6221657407424634
+      ]
+    },
+    "recall_macro": {
+      "mean": 0.8218102222401404,
+      "std": 0.032488745443601946,
+      "folds": [
+        0.8373197798581014,
+        0.7608404903957687,
+        0.8288157499701401,
+        0.8247390641716921,
+        0.8573360268049998
+      ]
+    }
+  },
+  "feature_importance": {
+    "tool_wear": 0.23747141879223765,
+    "strain": 0.17238305252673725,
+    "power": 0.1640588883094938,
+    "temp_delta": 0.15560528724476957,
+    "torque": 0.10539927701339642,
+    "rotational_speed": 0.06833423846086349,
+    "torque_speed_ratio": 0.06322427154385593,
+    "air_temperature": 0.015673242016320442,
+    "process_temperature": 0.01184125252022027,
+    "type_code": 0.006009071572105189
+  },
+  "rows": {
+    "total": 74979,
+    "train": 59784,
+    "test": 15195
+  },
+  "group_overlap": 0
+}
