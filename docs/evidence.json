@@ -1,0 +1,2529 @@
+{
+  "screens": [
+    "01_overview_empty",
+    "02_overview_starting",
+    "04_machine_picker",
+    "05_machine_hmi",
+    "06_machine_predicted",
+    "07_machine_breached",
+    "08_manual_healthy",
+    "09_manual_hdf",
+    "10_manual_pwf",
+    "11_manual_osf",
+    "12_manual_twf",
+    "13_batch_empty",
+    "14_batch_results",
+    "15_alarms",
+    "16_model_insights",
+    "03_overview_running"
+  ],
+  "api": {
+    "health": {
+      "status": "ok",
+      "model_loaded": true,
+      "dataset_available": true,
+      "database_ready": true,
+      "machines": 4,
+      "readings": 1119,
+      "time": "2026-09-21T14:18:01.346798+00:00"
+    },
+    "reference_keys": [
+      "sensors",
+      "machine_types",
+      "failure_classes",
+      "failure_info",
+      "thresholds",
+      "alarm_levels",
+      "alarm_styles",
+      "health_bands"
+    ],
+    "model_info": {
+      "algorithm": "Random Forest Classifier",
+      "sklearn_version": "1.5.2",
+      "trained_at": "2026-09-10T12:51:52+00:00",
+      "random_state": 42,
+      "n_train_rows": 59784,
+      "n_test_rows": 15195,
+      "n_features": 10,
+      "best_params": {
+        "n_estimators": 300,
+        "min_samples_split": 5,
+        "min_samples_leaf": 4,
+        "max_features": "log2",
+        "max_depth": 14,
+        "class_weight": "balanced_subsample"
+      },
+      "search_scoring": "f1_macro",
+      "search_best_cv_score": 0.8151204423199108,
+      "split": "StratifiedGroupKFold holdout (group = simulated machine)",
+      "target_column": "label_horizon",
+      "classes": [
+        "HDF",
+        "Normal",
+        "OSF",
+        "PWF",
+        "TWF"
+      ],
+      "features": [
+        "air_temperature",
+        "process_temperature",
+        "rotational_speed",
+        "torque",
+        "tool_wear",
+        "type_code",
+        "temp_delta",
+        "power",
+        "strain",
+        "torque_speed_ratio"
+      ],
+      "n_estimators": 300,
+      "prediction_horizon_readings": 15,
+      "prediction_horizon_hours": 2.5,
+      "target_semantics": "Classes are HORIZON labels: a predicted failure class means the machine is on the approach to that failure within the next 15 readings, not that it has already failed."
+    },
+    "metrics": {
+      "algorithm": "Random Forest Classifier",
+      "trained_at": "2026-09-10T12:51:52+00:00",
+      "best_params": {
+        "n_estimators": 300,
+        "min_samples_split": 5,
+        "min_samples_leaf": 4,
+        "max_features": "log2",
+        "max_depth": 14,
+        "class_weight": "balanced_subsample"
+      },
+      "test_rows": 15195,
+      "headline": {
+        "accuracy": 0.9070746956235604,
+        "balanced_accuracy": 0.8482545769186336,
+        "macro_f1": 0.6644071313027033,
+        "weighted_f1": 0.9210585075473057,
+        "macro_precision": 0.5771829143685141,
+        "macro_recall": 0.8482545769186336,
+        "mcc": 0.5907337689588636,
+        "cohen_kappa": 0.5591339897252621
+      },
+      "per_class": {
+        "Normal": {
+          "precision": 0.9851988899167438,
+          "recall": 0.9130527970279345,
+          "f1-score": 0.9477548296191924,
+          "support": 13997.0
+        },
+        "TWF": {
+          "precision": 0.5649122807017544,
+          "recall": 0.9583333333333334,
+          "f1-score": 0.7108167770419426,
+          "support": 336.0
+        },
+        "HDF": {
+          "precision": 0.26405228758169935,
+          "recall": 0.8347107438016529,
+          "f1-score": 0.4011916583912612,
+          "support": 242.0
+        },
+        "PWF": {
+          "precision": 0.46445497630331756,
+          "recall": 0.6644067796610169,
+          "f1-score": 0.5467224546722455,
+          "support": 295.0
+        },
+        "OSF": {
+          "precision": 0.6072961373390557,
+          "recall": 0.8707692307692307,
+          "f1-score": 0.7155499367888748,
+          "support": 325.0
+        }
+      },
+      "roc_auc": {
+        "HDF": 0.9748133683889963,
+        "Normal": 0.9521207919226191,
+        "OSF": 0.9913804769541152,
+        "PWF": 0.9803340916846774,
+        "TWF": 0.9950434881537245
+      },
+      "pr_auc": {
+        "HDF": 0.4758923743866435,
+        "Normal": 0.9955363588602417,
+        "OSF": 0.7386363243635379,
+        "PWF": 0.5452700516843516,
+        "TWF": 0.7999018645446491
+      },
+      "confusion_matrix": {
+        "labels": [
+          "Normal",
+          "TWF",
+          "HDF",
+          "PWF",
+          "OSF"
+        ],
+        "matrix": [
+          [
+            12780,
+            248,
+            561,
+            225,
+            183
+          ],
+          [
+            14,
+            322,
+            0,
+            0,
+            0
+          ],
+          [
+            40,
+            0,
+            202,
+            0,
+            0
+          ],
+          [
+            99,
+            0,
+            0,
+            196,
+            0
+          ],
+          [
+            39,
+            0,
+            2,
+            1,
+            283
+          ]
+        ]
+      },
+      "feature_importance_gini": {
+        "air_temperature": 0.015673242016320442,
+        "process_temperature": 0.01184125252022027,
+        "rotational_speed": 0.06833423846086349,
+        "torque": 0.10539927701339642,
+        "tool_wear": 0.23747141879223765,
+        "type_code": 0.006009071572105189,
+        "temp_delta": 0.15560528724476957,
+        "power": 0.1640588883094938,
+        "strain": 0.17238305252673725,
+        "torque_speed_ratio": 0.06322427154385593
+      },
+      "feature_importance_permutation": {
+        "air_temperature": -0.004612411262123972,
+        "process_temperature": -0.005558528432380494,
+        "rotational_speed": 0.030401358274368184,
+        "torque": 0.08239970091241278,
+        "tool_wear": 0.261105765253882,
+        "type_code": 0.009855849156074759,
+        "temp_delta": 0.07146254944250555,
+        "power": 0.10132125615415336,
+        "strain": 0.2109954590133786,
+        "torque_speed_ratio": 0.010422401331779695
+      },
+      "learning_curve": {
+        "train_sizes": [
+          6014,
+          12830,
+          19646,
+          26462,
+          33278,
+          40094
+        ],
+        "train_f1": [
+          0.9443857832992956,
+          0.9316333418043002,
+          0.8670662734222364,
+          0.8438237620555871,
+          0.8191896838278819,
+          0.8035797999887221
+        ],
+        "cv_f1": [
+          0.5207672894805262,
+          0.6318526960381591,
+          0.655343309694474,
+          0.6836713141349774,
+          0.6822381233068934,
+          0.6787826594311982
+        ]
+      },
+      "early_warning": {
+        "machines_evaluated": 42,
+        "mean_lead_readings": 52.0,
+        "median_lead_readings": 38.0,
+        "mean_lead_minutes": 520.0,
+        "mean_lead_hours": 8.67,
+        "warned_before_failure_pct": 97.6,
+        "per_mode": {
+          "HDF": 47.6,
+          "OSF": 64.18,
+          "PWF": 49.8,
+          "TWF": 45.82
+        }
+      }
+    },
+    "verify": {
+      "samples": 20,
+      "max_absolute_error": 4.440892098500626e-16,
+      "exact": true,
+      "tolerance": 1e-06
+    },
+    "machines": {
+      "machines": [
+        {
+          "machine_id": "MACHINE-01",
+          "name": "MACHINE-01",
+          "machine_type": "M",
+          "location": null,
+          "commissioned": null,
+          "created_at": "2026-09-21T14:13:25.344455+00:00",
+          "last_seen": "2026-09-21T14:15:24.201808+00:00",
+          "predicted_class": "PWF",
+          "p_failure": 0.9925,
+          "health_index": 0.3,
+          "alarm_level": "CRITICAL",
+          "overall_stress": 1.0,
+          "dominant_mode": "PWF",
+          "rul_hours": 0.0,
+          "tool_wear": 84.5,
+          "cycle": 358,
+          "reading_count": 360,
+          "open_alarms": 5
+        },
+        {
+          "machine_id": "MACHINE-02",
+          "name": "MACHINE-02",
+          "machine_type": "L",
+          "location": null,
+          "commissioned": null,
+          "created_at": "2026-09-21T14:13:25.570815+00:00",
+          "last_seen": "2026-09-21T14:15:07.355645+00:00",
+          "predicted_class": "TWF",
+          "p_failure": 0.9918,
+          "health_index": 12.9,
+          "alarm_level": "CRITICAL",
+          "overall_stress": 0.91,
+          "dominant_mode": "TWF",
+          "rul_hours": 4.82,
+          "tool_wear": 218.4,
+          "cycle": 281,
+          "reading_count": 282,
+          "open_alarms": 3
+        },
+        {
+          "machine_id": "MACHINE-03",
+          "name": "MACHINE-03",
+          "machine_type": "M",
+          "location": null,
+          "commissioned": null,
+          "created_at": "2026-09-21T14:14:24.672146+00:00",
+          "last_seen": "2026-09-21T14:17:12.911497+00:00",
+          "predicted_class": "HDF",
+          "p_failure": 0.9633,
+          "health_index": 1.5,
+          "alarm_level": "CRITICAL",
+          "overall_stress": 1.0,
+          "dominant_mode": "HDF",
+          "rul_hours": 0.0,
+          "tool_wear": 93.8,
+          "cycle": 159,
+          "reading_count": 91,
+          "open_alarms": 28
+        },
+        {
+          "machine_id": "MACHINE-04",
+          "name": "MACHINE-04",
+          "machine_type": "L",
+          "location": null,
+          "commissioned": null,
+          "created_at": "2026-09-21T14:13:25.762223+00:00",
+          "last_seen": "2026-09-21T14:15:28.481927+00:00",
+          "predicted_class": "OSF",
+          "p_failure": 0.9436,
+          "health_index": 2.3,
+          "alarm_level": "CRITICAL",
+          "overall_stress": 1.0,
+          "dominant_mode": "OSF",
+          "rul_hours": 0.0,
+          "tool_wear": 200.2,
+          "cycle": 385,
+          "reading_count": 386,
+          "open_alarms": 12
+        }
+      ],
+      "summary": {
+        "machines": 4,
+        "total_readings": 1119,
+        "open_alarms": 48,
+        "machines_at_risk": 4,
+        "by_alarm_level": {
+          "NORMAL": 0,
+          "ADVISORY": 0,
+          "WARNING": 0,
+          "CRITICAL": 4
+        },
+        "mean_health": 4.2,
+        "worst_health": 0.3
+      }
+    },
+    "alarms": {
+      "alarms": [
+        {
+          "id": 114,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2089,
+          "ts": "2026-09-21T14:17:12.911497+00:00",
+          "level": "CRITICAL",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Thermal gradient 8.53 K is below the 8.6 K minimum while speed 1251 rpm is below 1380 rpm.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 1.5,
+          "rul_hours": 0.0,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": [
+            {
+              "mode": "HDF",
+              "detail": "Thermal gradient 8.53 K is below the 8.6 K minimum while speed 1251 rpm is below 1380 rpm",
+              "hard": true
+            }
+          ]
+        },
+        {
+          "id": 113,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2083,
+          "ts": "2026-09-21T14:17:02.236526+00:00",
+          "level": "CRITICAL",
+          "mode": "OSF",
+          "mode_name": "Overstrain Failure",
+          "message": "Overstrain Failure predicted within the next 15 readings (~2.5 operating hours) - 60% confidence. The machine is still running; act now.",
+          "cause": "Product of cutter wear and spindle torque has exceeded the strain limit for this product variant - the end mill and spindle are being overstressed.",
+          "recommended_action": "Reduce feed rate and depth of cut immediately, replace the worn end mill, and inspect the spindle bearings and tool holder for damage.",
+          "health_index": 49.1,
+          "rul_hours": 38.6,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 112,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2082,
+          "ts": "2026-09-21T14:17:00.481100+00:00",
+          "level": "CRITICAL",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 37% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 74.7,
+          "rul_hours": 72.36,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 111,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2080,
+          "ts": "2026-09-21T14:16:56.997463+00:00",
+          "level": "CRITICAL",
+          "mode": "OSF",
+          "mode_name": "Overstrain Failure",
+          "message": "Overstrain Failure predicted within the next 15 readings (~2.5 operating hours) - 78% confidence. The machine is still running; act now.",
+          "cause": "Product of cutter wear and spindle torque has exceeded the strain limit for this product variant - the end mill and spindle are being overstressed.",
+          "recommended_action": "Reduce feed rate and depth of cut immediately, replace the worn end mill, and inspect the spindle bearings and tool holder for damage.",
+          "health_index": 41.6,
+          "rul_hours": 126.44,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 110,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2078,
+          "ts": "2026-09-21T14:16:53.589749+00:00",
+          "level": "CRITICAL",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 88% confidence. The machine is still running; act now.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 37.2,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 109,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2076,
+          "ts": "2026-09-21T14:16:50.217776+00:00",
+          "level": "WARNING",
+          "mode": "OSF",
+          "mode_name": "Overstrain Failure",
+          "message": "Overstrain Failure predicted within the next 15 readings (~2.5 operating hours) - 81% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+          "cause": "Product of cutter wear and spindle torque has exceeded the strain limit for this product variant - the end mill and spindle are being overstressed.",
+          "recommended_action": "Reduce feed rate and depth of cut immediately, replace the worn end mill, and inspect the spindle bearings and tool holder for damage.",
+          "health_index": 40.1,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 108,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2075,
+          "ts": "2026-09-21T14:16:48.482788+00:00",
+          "level": "WARNING",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 36% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 77.7,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 107,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2074,
+          "ts": "2026-09-21T14:16:46.720480+00:00",
+          "level": "CRITICAL",
+          "mode": "OSF",
+          "mode_name": "Overstrain Failure",
+          "message": "Overstrain Failure predicted within the next 15 readings (~2.5 operating hours) - 82% confidence. The machine is still running; act now.",
+          "cause": "Product of cutter wear and spindle torque has exceeded the strain limit for this product variant - the end mill and spindle are being overstressed.",
+          "recommended_action": "Reduce feed rate and depth of cut immediately, replace the worn end mill, and inspect the spindle bearings and tool holder for damage.",
+          "health_index": 39.5,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 106,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2070,
+          "ts": "2026-09-21T14:16:39.842011+00:00",
+          "level": "CRITICAL",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 62% confidence. The machine is still running; act now.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 48.4,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 105,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2068,
+          "ts": "2026-09-21T14:16:36.387730+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 62% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 48.2,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 104,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2066,
+          "ts": "2026-09-21T14:16:32.913603+00:00",
+          "level": "ADVISORY",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 34% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 88.2,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 103,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2065,
+          "ts": "2026-09-21T14:16:31.148766+00:00",
+          "level": "ADVISORY",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 34% of its limit. [Warning pending confirmation: 1 of 2 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 83.1,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 102,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2063,
+          "ts": "2026-09-21T14:16:27.094054+00:00",
+          "level": "ADVISORY",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 33% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 86.0,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 101,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2061,
+          "ts": "2026-09-21T14:16:23.697468+00:00",
+          "level": "ADVISORY",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 43% of its limit. [Warning pending confirmation: 1 of 2 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 80.1,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 100,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2055,
+          "ts": "2026-09-21T14:16:13.442058+00:00",
+          "level": "ADVISORY",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 31% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 86.9,
+          "rul_hours": 35.38,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 99,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2054,
+          "ts": "2026-09-21T14:16:11.715382+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 40% of its limit. [Critical pending confirmation: 1 of 3 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 72.8,
+          "rul_hours": 34.83,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 98,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2053,
+          "ts": "2026-09-21T14:16:09.954631+00:00",
+          "level": "ADVISORY",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 32% of its limit.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 86.5,
+          "rul_hours": 47.77,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 97,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2052,
+          "ts": "2026-09-21T14:16:08.226860+00:00",
+          "level": "ADVISORY",
+          "mode": "TWF",
+          "mode_name": "Tool Wear Failure",
+          "message": "Early degradation trend on Tool Wear Failure - stress at 30% of its limit.",
+          "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+          "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+          "health_index": 89.0,
+          "rul_hours": 44.83,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 96,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2050,
+          "ts": "2026-09-21T14:16:04.744718+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 41% of its limit.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 75.0,
+          "rul_hours": 35.76,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 95,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2047,
+          "ts": "2026-09-21T14:15:59.649648+00:00",
+          "level": "CRITICAL",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 64% confidence. The machine is still running; act now.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 47.6,
+          "rul_hours": 13.85,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 94,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2044,
+          "ts": "2026-09-21T14:15:54.523665+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 64% of its limit.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 61.0,
+          "rul_hours": 14.74,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 93,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2043,
+          "ts": "2026-09-21T14:15:52.759156+00:00",
+          "level": "CRITICAL",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 57% of its limit.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 62.4,
+          "rul_hours": 22.89,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 92,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2035,
+          "ts": "2026-09-21T14:15:39.314325+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 51% of its limit. [Critical pending confirmation: 1 of 3 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 67.3,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 91,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2034,
+          "ts": "2026-09-21T14:15:37.605812+00:00",
+          "level": "ADVISORY",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Early degradation trend on Heat Dissipation Failure - stress at 26% of its limit.",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 87.9,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        },
+        {
+          "id": 90,
+          "machine_id": "MACHINE-03",
+          "reading_id": 2031,
+          "ts": "2026-09-21T14:15:32.554271+00:00",
+          "level": "WARNING",
+          "mode": "HDF",
+          "mode_name": "Heat Dissipation Failure",
+          "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 55% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+          "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+          "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+          "health_index": 51.1,
+          "rul_hours": 166.5,
+          "acknowledged": false,
+          "acknowledged_by": null,
+          "acknowledged_at": null,
+          "threshold_breaches": []
+        }
+      ],
+      "count": 25,
+      "unacknowledged": 25
+    },
+    "catalogue": {
+      "machines": [
+        {
+          "machine_id": "MC-001",
+          "machine_type": "M",
+          "readings": 359,
+          "failure_mode": "PWF",
+          "fails_at_cycle": 346,
+          "life_hours": 59.8
+        },
+        {
+          "machine_id": "MC-002",
+          "machine_type": "L",
+          "readings": 282,
+          "failure_mode": "TWF",
+          "fails_at_cycle": 269,
+          "life_hours": 47.0
+        },
+        {
+          "machine_id": "MC-003",
+          "machine_type": "L",
+          "readings": 214,
+          "failure_mode": "TWF",
+          "fails_at_cycle": 205,
+          "life_hours": 35.7
+        },
+        {
+          "machine_id": "MC-004",
+          "machine_type": "H",
+          "readings": 222,
+          "failure_mode": "TWF",
+          "fails_at_cycle": 213,
+          "life_hours": 37.0
+        },
+        {
+          "machine_id": "MC-005",
+          "machine_type": "H",
+          "readings": 319,
+          "failure_mode": "TWF",
+          "fails_at_cycle": 311,
+          "life_hours": 53.2
+        },
+        {
+          "machine_id": "MC-006",
+          "machine_type": "M",
+          "readings": 179,
+          "failure_mode": "HDF",
+          "fails_at_cycle": 159,
+          "life_hours": 29.8
+        }
+      ]
+    },
+    "predictions": {
+      "healthy": {
+        "input": {
+          "machine_type": "M",
+          "air_temperature": 298.0,
+          "process_temperature": 308.0,
+          "rotational_speed": 1558,
+          "torque": 38.5,
+          "tool_wear": 71
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:02.951562+00:00",
+          "reading": {
+            "machine_type": "M",
+            "air_temperature": 298.0,
+            "process_temperature": 308.0,
+            "rotational_speed": 1558.0,
+            "torque": 38.5,
+            "tool_wear": 71.0
+          },
+          "derived": {
+            "temp_delta": 10.0,
+            "power": 6281.4051,
+            "strain": 2733.5,
+            "torque_speed_ratio": 0.0247
+          },
+          "prediction": {
+            "class": "Normal",
+            "is_failure_predicted": false,
+            "meaning": "No failure expected within the next 15 readings (~2.5 operating hours).",
+            "confidence": 0.9929,
+            "probabilities": {
+              "HDF": 0.0055,
+              "Normal": 0.9929,
+              "OSF": 0.0008,
+              "PWF": 0.0008,
+              "TWF": 0.0
+            },
+            "p_failure": 0.0071,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.2958,
+              "HDF": 0.0,
+              "PWF": 0.0,
+              "OSF": 0.2278
+            },
+            "dominant_mode": "TWF",
+            "overall_stress": 0.2958,
+            "threshold_breaches": [],
+            "has_hard_breach": false
+          },
+          "health": {
+            "index": 96.9,
+            "level": "NORMAL",
+            "color": "#22c55e",
+            "label": "Healthy"
+          },
+          "rul": {
+            "readings": 208,
+            "minutes": 2077.3,
+            "hours": 34.62,
+            "days": 1.44,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "NORMAL",
+            "priority": 0,
+            "color": "#22c55e",
+            "label": "Normal",
+            "mode": "Normal",
+            "mode_name": "Normal Operation",
+            "message": "All monitored parameters within the safe operating envelope.",
+            "cause": "All monitored parameters are within their safe operating envelope.",
+            "recommended_action": "No maintenance action required. Continue routine condition monitoring.",
+            "threshold_breaches": [],
+            "predicted": false,
+            "has_breached": false,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "NORMAL",
+              "physics_stress": "NORMAL",
+              "rule_check": "NORMAL"
+            },
+            "persistence": {
+              "level": "NORMAL",
+              "raw_level": "NORMAL",
+              "held": false,
+              "streak": 1,
+              "required": 1
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "Normal",
+            "base_rate": 0.2,
+            "predicted_probability": 0.99295,
+            "total_contribution": 0.79295,
+            "top_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 10.0,
+                "contribution": 0.27191,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 6281.405,
+                "contribution": 0.21374,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 71.0,
+                "contribution": 0.0889,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1558.0,
+                "contribution": 0.08409,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.025,
+                "contribution": 0.03589,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 38.5,
+                "contribution": 0.03229,
+                "direction": "increases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 10.0,
+                "contribution": 0.27191,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 6281.405,
+                "contribution": 0.21374,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 71.0,
+                "contribution": 0.0889,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1558.0,
+                "contribution": 0.08409,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.025,
+                "contribution": 0.03589,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 38.5,
+                "contribution": 0.03229,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 298.0,
+                "contribution": 0.03104,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 2733.5,
+                "contribution": 0.02495,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 308.0,
+                "contribution": 0.01032,
+                "direction": "increases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 1.0,
+                "contribution": -0.0002,
+                "direction": "decreases"
+              }
+            ],
+            "narrative": "Thermal Gradient (dT) at 10 K, Mechanical Power at 6281.4 W and Tool Wear at 71 min raised the likelihood of Normal operation from a baseline 20% to 99%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      },
+      "hdf_approach": {
+        "input": {
+          "machine_type": "L",
+          "air_temperature": 303.05,
+          "process_temperature": 312.17,
+          "rotational_speed": 1208,
+          "torque": 46.7,
+          "tool_wear": 101.2
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:03.055185+00:00",
+          "reading": {
+            "machine_type": "L",
+            "air_temperature": 303.05,
+            "process_temperature": 312.17,
+            "rotational_speed": 1208.0,
+            "torque": 46.7,
+            "tool_wear": 101.2
+          },
+          "derived": {
+            "temp_delta": 9.12,
+            "power": 5907.6184,
+            "strain": 4726.04,
+            "torque_speed_ratio": 0.0387
+          },
+          "prediction": {
+            "class": "HDF",
+            "is_failure_predicted": true,
+            "meaning": "Machine is on the approach to HDF - predicted to occur within the next 15 readings (~2.5 operating hours) if no action is taken.",
+            "confidence": 0.9215,
+            "probabilities": {
+              "HDF": 0.9215,
+              "Normal": 0.0633,
+              "OSF": 0.0144,
+              "PWF": 0.0009,
+              "TWF": 0.0
+            },
+            "p_failure": 0.9367,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.4217,
+              "HDF": 0.6286,
+              "PWF": 0.0,
+              "OSF": 0.4296
+            },
+            "dominant_mode": "HDF",
+            "overall_stress": 0.6286,
+            "threshold_breaches": [],
+            "has_hard_breach": false
+          },
+          "health": {
+            "index": 34.7,
+            "level": "CRITICAL",
+            "color": "#ef4444",
+            "label": "Critical"
+          },
+          "rul": {
+            "readings": 110,
+            "minutes": 1095.7,
+            "hours": 18.26,
+            "days": 0.76,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "WARNING",
+            "priority": 2,
+            "color": "#f59e0b",
+            "label": "Warning",
+            "mode": "HDF",
+            "mode_name": "Heat Dissipation Failure",
+            "message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 94% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+            "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+            "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+            "threshold_breaches": [],
+            "predicted": true,
+            "has_breached": false,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "CRITICAL",
+              "physics_stress": "NORMAL",
+              "rule_check": "NORMAL"
+            },
+            "persistence": {
+              "level": "WARNING",
+              "raw_level": "CRITICAL",
+              "held": true,
+              "streak": 1,
+              "required": 3
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "HDF",
+            "base_rate": 0.2,
+            "predicted_probability": 0.9215,
+            "total_contribution": 0.7215,
+            "top_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 9.12,
+                "contribution": 0.12953,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 101.2,
+                "contribution": 0.10776,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 4726.04,
+                "contribution": 0.08573,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 5907.618,
+                "contribution": 0.08566,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1208.0,
+                "contribution": 0.08439,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 46.7,
+                "contribution": 0.08426,
+                "direction": "increases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 9.12,
+                "contribution": 0.12953,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 101.2,
+                "contribution": 0.10776,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 4726.04,
+                "contribution": 0.08573,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 5907.618,
+                "contribution": 0.08566,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1208.0,
+                "contribution": 0.08439,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 46.7,
+                "contribution": 0.08426,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 303.05,
+                "contribution": 0.05367,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.039,
+                "contribution": 0.05288,
+                "direction": "increases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 0.0,
+                "contribution": 0.02176,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 312.17,
+                "contribution": 0.01588,
+                "direction": "increases"
+              }
+            ],
+            "narrative": "Thermal Gradient (dT) at 9.12 K, Tool Wear at 101.2 min and Tool Strain (wear x torque) at 4726.04 minNm raised the likelihood of HDF from a baseline 20% to 92%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      },
+      "pwf_approach": {
+        "input": {
+          "machine_type": "M",
+          "air_temperature": 302.56,
+          "process_temperature": 312.75,
+          "rotational_speed": 2121,
+          "torque": 38.6,
+          "tool_wear": 78.3
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:03.166728+00:00",
+          "reading": {
+            "machine_type": "M",
+            "air_temperature": 302.56,
+            "process_temperature": 312.75,
+            "rotational_speed": 2121.0,
+            "torque": 38.6,
+            "tool_wear": 78.3
+          },
+          "derived": {
+            "temp_delta": 10.19,
+            "power": 8573.4692,
+            "strain": 3022.38,
+            "torque_speed_ratio": 0.0182
+          },
+          "prediction": {
+            "class": "PWF",
+            "is_failure_predicted": true,
+            "meaning": "Machine is on the approach to PWF - predicted to occur within the next 15 readings (~2.5 operating hours) if no action is taken.",
+            "confidence": 0.9519,
+            "probabilities": {
+              "HDF": 0.0,
+              "Normal": 0.0481,
+              "OSF": 0.0,
+              "PWF": 0.9519,
+              "TWF": 0.0
+            },
+            "p_failure": 0.9519,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.3262,
+              "HDF": 0.0,
+              "PWF": 0.7774,
+              "OSF": 0.2519
+            },
+            "dominant_mode": "PWF",
+            "overall_stress": 0.7774,
+            "threshold_breaches": [],
+            "has_hard_breach": false
+          },
+          "health": {
+            "index": 30.0,
+            "level": "CRITICAL",
+            "color": "#ef4444",
+            "label": "Critical"
+          },
+          "rul": {
+            "readings": 66,
+            "minutes": 656.7,
+            "hours": 10.95,
+            "days": 0.46,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "WARNING",
+            "priority": 2,
+            "color": "#f59e0b",
+            "label": "Warning",
+            "mode": "PWF",
+            "mode_name": "Power Failure",
+            "message": "Power Failure predicted within the next 15 readings (~2.5 operating hours) - 95% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+            "cause": "Spindle cutting power (torque x angular speed) has drifted outside the 3500-9000 W design window - spindle drive over/under-load.",
+            "recommended_action": "Check the spindle motor drive, supply voltage and current draw. Verify feed rate and depth of cut, belt/coupling alignment, and inspect the spindle for binding.",
+            "threshold_breaches": [],
+            "predicted": true,
+            "has_breached": false,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "CRITICAL",
+              "physics_stress": "ADVISORY",
+              "rule_check": "NORMAL"
+            },
+            "persistence": {
+              "level": "WARNING",
+              "raw_level": "CRITICAL",
+              "held": true,
+              "streak": 1,
+              "required": 3
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "PWF",
+            "base_rate": 0.2,
+            "predicted_probability": 0.95192,
+            "total_contribution": 0.75192,
+            "top_drivers": [
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 8573.469,
+                "contribution": 0.40188,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 78.3,
+                "contribution": 0.12232,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 2121.0,
+                "contribution": 0.06935,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3022.38,
+                "contribution": 0.06183,
+                "direction": "increases"
+              },
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 10.19,
+                "contribution": 0.05918,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 38.6,
+                "contribution": 0.02536,
+                "direction": "increases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 8573.469,
+                "contribution": 0.40188,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 78.3,
+                "contribution": 0.12232,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 2121.0,
+                "contribution": 0.06935,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3022.38,
+                "contribution": 0.06183,
+                "direction": "increases"
+              },
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 10.19,
+                "contribution": 0.05918,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 38.6,
+                "contribution": 0.02536,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.018,
+                "contribution": 0.00651,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 312.75,
+                "contribution": 0.00277,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 302.56,
+                "contribution": 0.00171,
+                "direction": "increases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 1.0,
+                "contribution": 0.001,
+                "direction": "increases"
+              }
+            ],
+            "narrative": "Mechanical Power at 8573.47 W, Tool Wear at 78.3 min and Rotational Speed at 2121 rpm raised the likelihood of PWF from a baseline 20% to 95%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      },
+      "osf_approach": {
+        "input": {
+          "machine_type": "M",
+          "air_temperature": 300.27,
+          "process_temperature": 309.53,
+          "rotational_speed": 1230,
+          "torque": 45.2,
+          "tool_wear": 85.4
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:03.263362+00:00",
+          "reading": {
+            "machine_type": "M",
+            "air_temperature": 300.27,
+            "process_temperature": 309.53,
+            "rotational_speed": 1230.0,
+            "torque": 45.2,
+            "tool_wear": 85.4
+          },
+          "derived": {
+            "temp_delta": 9.26,
+            "power": 5821.9995,
+            "strain": 3860.08,
+            "torque_speed_ratio": 0.0367
+          },
+          "prediction": {
+            "class": "OSF",
+            "is_failure_predicted": true,
+            "meaning": "Machine is on the approach to OSF - predicted to occur within the next 15 readings (~2.5 operating hours) if no action is taken.",
+            "confidence": 0.4245,
+            "probabilities": {
+              "HDF": 0.3945,
+              "Normal": 0.176,
+              "OSF": 0.4245,
+              "PWF": 0.0048,
+              "TWF": 0.0001
+            },
+            "p_failure": 0.824,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.3558,
+              "HDF": 0.5286,
+              "PWF": 0.0,
+              "OSF": 0.3217
+            },
+            "dominant_mode": "HDF",
+            "overall_stress": 0.5286,
+            "threshold_breaches": [],
+            "has_hard_breach": false
+          },
+          "health": {
+            "index": 39.5,
+            "level": "CRITICAL",
+            "color": "#ef4444",
+            "label": "Critical"
+          },
+          "rul": {
+            "readings": 139,
+            "minutes": 1390.7,
+            "hours": 23.18,
+            "days": 0.97,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "WARNING",
+            "priority": 2,
+            "color": "#f59e0b",
+            "label": "Warning",
+            "mode": "OSF",
+            "mode_name": "Overstrain Failure",
+            "message": "Overstrain Failure predicted within the next 15 readings (~2.5 operating hours) - 82% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+            "cause": "Product of cutter wear and spindle torque has exceeded the strain limit for this product variant - the end mill and spindle are being overstressed.",
+            "recommended_action": "Reduce feed rate and depth of cut immediately, replace the worn end mill, and inspect the spindle bearings and tool holder for damage.",
+            "threshold_breaches": [],
+            "predicted": true,
+            "has_breached": false,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "CRITICAL",
+              "physics_stress": "NORMAL",
+              "rule_check": "NORMAL"
+            },
+            "persistence": {
+              "level": "WARNING",
+              "raw_level": "CRITICAL",
+              "held": true,
+              "streak": 1,
+              "required": 3
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "OSF",
+            "base_rate": 0.2,
+            "predicted_probability": 0.42451,
+            "total_contribution": 0.22451,
+            "top_drivers": [
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 5822.0,
+                "contribution": 0.09543,
+                "direction": "increases"
+              },
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 9.26,
+                "contribution": 0.0803,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 309.53,
+                "contribution": 0.05271,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 85.4,
+                "contribution": -0.04845,
+                "direction": "decreases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 300.27,
+                "contribution": 0.04189,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3860.08,
+                "contribution": -0.04007,
+                "direction": "decreases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 5822.0,
+                "contribution": 0.09543,
+                "direction": "increases"
+              },
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 9.26,
+                "contribution": 0.0803,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 309.53,
+                "contribution": 0.05271,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 85.4,
+                "contribution": -0.04845,
+                "direction": "decreases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 300.27,
+                "contribution": 0.04189,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3860.08,
+                "contribution": -0.04007,
+                "direction": "decreases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1230.0,
+                "contribution": 0.03408,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 45.2,
+                "contribution": -0.03088,
+                "direction": "decreases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 1.0,
+                "contribution": 0.0287,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.037,
+                "contribution": 0.01081,
+                "direction": "increases"
+              }
+            ],
+            "narrative": "Mechanical Power at 5822 W, Thermal Gradient (dT) at 9.26 K and Process Temperature at 309.53 K raised the likelihood of OSF from a baseline 20% to 42%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      },
+      "twf_window": {
+        "input": {
+          "machine_type": "L",
+          "air_temperature": 301.41,
+          "process_temperature": 312.08,
+          "rotational_speed": 2975,
+          "torque": 23.3,
+          "tool_wear": 198.1
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:03.361359+00:00",
+          "reading": {
+            "machine_type": "L",
+            "air_temperature": 301.41,
+            "process_temperature": 312.08,
+            "rotational_speed": 2975.0,
+            "torque": 23.3,
+            "tool_wear": 198.1
+          },
+          "derived": {
+            "temp_delta": 10.67,
+            "power": 7258.9116,
+            "strain": 4615.73,
+            "torque_speed_ratio": 0.0078
+          },
+          "prediction": {
+            "class": "TWF",
+            "is_failure_predicted": true,
+            "meaning": "Machine is on the approach to TWF - predicted to occur within the next 15 readings (~2.5 operating hours) if no action is taken.",
+            "confidence": 0.7925,
+            "probabilities": {
+              "HDF": 0.0,
+              "Normal": 0.2075,
+              "OSF": 0.0,
+              "PWF": 0.0,
+              "TWF": 0.7925
+            },
+            "p_failure": 0.7925,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.8254,
+              "HDF": 0.0,
+              "PWF": 0.0913,
+              "OSF": 0.4196
+            },
+            "dominant_mode": "TWF",
+            "overall_stress": 0.8254,
+            "threshold_breaches": [],
+            "has_hard_breach": false
+          },
+          "health": {
+            "index": 31.2,
+            "level": "CRITICAL",
+            "color": "#ef4444",
+            "label": "Critical"
+          },
+          "rul": {
+            "readings": 52,
+            "minutes": 515.0,
+            "hours": 8.58,
+            "days": 0.36,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "WARNING",
+            "priority": 2,
+            "color": "#f59e0b",
+            "label": "Warning",
+            "mode": "TWF",
+            "mode_name": "Tool Wear Failure",
+            "message": "Tool Wear Failure predicted within the next 15 readings (~2.5 operating hours) - 79% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+            "cause": "The milling cutter (end mill) has exceeded its usable wear life (200-240 min); edge degradation causes poor surface finish and rising cutting forces.",
+            "recommended_action": "Change the end mill (or re-grind it) at the next production break and reset the CNC tool-life counter after the tool change.",
+            "threshold_breaches": [],
+            "predicted": true,
+            "has_breached": false,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "CRITICAL",
+              "physics_stress": "ADVISORY",
+              "rule_check": "NORMAL"
+            },
+            "persistence": {
+              "level": "WARNING",
+              "raw_level": "CRITICAL",
+              "held": true,
+              "streak": 1,
+              "required": 3
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "TWF",
+            "base_rate": 0.2,
+            "predicted_probability": 0.79249,
+            "total_contribution": 0.59249,
+            "top_drivers": [
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 198.1,
+                "contribution": 0.2937,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 23.3,
+                "contribution": 0.11686,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.008,
+                "contribution": 0.10051,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 301.41,
+                "contribution": -0.06904,
+                "direction": "decreases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 2975.0,
+                "contribution": 0.06857,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 7258.912,
+                "contribution": 0.0521,
+                "direction": "increases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 198.1,
+                "contribution": 0.2937,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 23.3,
+                "contribution": 0.11686,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.008,
+                "contribution": 0.10051,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 301.41,
+                "contribution": -0.06904,
+                "direction": "decreases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 2975.0,
+                "contribution": 0.06857,
+                "direction": "increases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 7258.912,
+                "contribution": 0.0521,
+                "direction": "increases"
+              },
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 10.67,
+                "contribution": 0.03615,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 4615.73,
+                "contribution": -0.01291,
+                "direction": "decreases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 312.08,
+                "contribution": 0.00552,
+                "direction": "increases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 0.0,
+                "contribution": 0.00104,
+                "direction": "increases"
+              }
+            ],
+            "narrative": "Tool Wear at 198.1 min, Torque at 23.3 Nm and Load Characteristic at 0.008 Nm/rpm raised the likelihood of TWF from a baseline 20% to 79%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      },
+      "hdf_breached": {
+        "input": {
+          "machine_type": "M",
+          "air_temperature": 298.0,
+          "process_temperature": 306.0,
+          "rotational_speed": 1300,
+          "torque": 38.0,
+          "tool_wear": 90
+        },
+        "output": {
+          "machine_id": null,
+          "timestamp": "2026-09-21T14:18:03.524679+00:00",
+          "reading": {
+            "machine_type": "M",
+            "air_temperature": 298.0,
+            "process_temperature": 306.0,
+            "rotational_speed": 1300.0,
+            "torque": 38.0,
+            "tool_wear": 90.0
+          },
+          "derived": {
+            "temp_delta": 8.0,
+            "power": 5173.1559,
+            "strain": 3420.0,
+            "torque_speed_ratio": 0.0292
+          },
+          "prediction": {
+            "class": "HDF",
+            "is_failure_predicted": true,
+            "meaning": "Machine is on the approach to HDF - predicted to occur within the next 15 readings (~2.5 operating hours) if no action is taken.",
+            "confidence": 0.8771,
+            "probabilities": {
+              "HDF": 0.8771,
+              "Normal": 0.1177,
+              "OSF": 0.0009,
+              "PWF": 0.0043,
+              "TWF": 0.0
+            },
+            "p_failure": 0.8823,
+            "horizon_readings": 15
+          },
+          "physics": {
+            "stress": {
+              "TWF": 0.375,
+              "HDF": 1.0,
+              "PWF": 0.2178,
+              "OSF": 0.285
+            },
+            "dominant_mode": "HDF",
+            "overall_stress": 1.0,
+            "threshold_breaches": [
+              {
+                "mode": "HDF",
+                "detail": "Thermal gradient 8.00 K is below the 8.6 K minimum while speed 1300 rpm is below 1380 rpm",
+                "hard": true
+              }
+            ],
+            "has_hard_breach": true
+          },
+          "health": {
+            "index": 4.7,
+            "level": "CRITICAL",
+            "color": "#ef4444",
+            "label": "Critical"
+          },
+          "rul": {
+            "readings": 0,
+            "minutes": 0.0,
+            "hours": 0.0,
+            "days": 0.0,
+            "method": "nominal",
+            "confidence": "low",
+            "basis": "No trend history for this machine. Estimated from current stress against a typical 295-reading service life."
+          },
+          "alarm": {
+            "level": "CRITICAL",
+            "priority": 3,
+            "color": "#ef4444",
+            "label": "Critical",
+            "mode": "HDF",
+            "mode_name": "Heat Dissipation Failure",
+            "message": "Thermal gradient 8.00 K is below the 8.6 K minimum while speed 1300 rpm is below 1380 rpm.",
+            "cause": "Temperature difference between the cutting process and the ambient air is below 8.6 K while spindle speed is under 1380 rpm - the milling machine cannot shed its heat.",
+            "recommended_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+            "threshold_breaches": [
+              {
+                "mode": "HDF",
+                "detail": "Thermal gradient 8.00 K is below the 8.6 K minimum while speed 1300 rpm is below 1380 rpm",
+                "hard": true
+              }
+            ],
+            "predicted": true,
+            "has_breached": true,
+            "horizon_readings": 15,
+            "sources": {
+              "model": "CRITICAL",
+              "physics_stress": "CRITICAL",
+              "rule_check": "CRITICAL"
+            },
+            "persistence": {
+              "level": "CRITICAL",
+              "raw_level": "CRITICAL",
+              "held": false,
+              "streak": 3,
+              "required": 3
+            },
+            "acknowledged": false
+          },
+          "explanation": {
+            "target_class": "HDF",
+            "base_rate": 0.2,
+            "predicted_probability": 0.87711,
+            "total_contribution": 0.67711,
+            "top_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 8.0,
+                "contribution": 0.52321,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 90.0,
+                "contribution": 0.08009,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1300.0,
+                "contribution": 0.05742,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3420.0,
+                "contribution": 0.04071,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 298.0,
+                "contribution": -0.03675,
+                "direction": "decreases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.029,
+                "contribution": 0.01913,
+                "direction": "increases"
+              }
+            ],
+            "all_drivers": [
+              {
+                "feature": "temp_delta",
+                "label": "Thermal Gradient (dT)",
+                "unit": "K",
+                "value": 8.0,
+                "contribution": 0.52321,
+                "direction": "increases"
+              },
+              {
+                "feature": "tool_wear",
+                "label": "Tool Wear",
+                "unit": "min",
+                "value": 90.0,
+                "contribution": 0.08009,
+                "direction": "increases"
+              },
+              {
+                "feature": "rotational_speed",
+                "label": "Rotational Speed",
+                "unit": "rpm",
+                "value": 1300.0,
+                "contribution": 0.05742,
+                "direction": "increases"
+              },
+              {
+                "feature": "strain",
+                "label": "Tool Strain (wear x torque)",
+                "unit": "minNm",
+                "value": 3420.0,
+                "contribution": 0.04071,
+                "direction": "increases"
+              },
+              {
+                "feature": "air_temperature",
+                "label": "Air Temperature",
+                "unit": "K",
+                "value": 298.0,
+                "contribution": -0.03675,
+                "direction": "decreases"
+              },
+              {
+                "feature": "torque_speed_ratio",
+                "label": "Load Characteristic",
+                "unit": "Nm/rpm",
+                "value": 0.029,
+                "contribution": 0.01913,
+                "direction": "increases"
+              },
+              {
+                "feature": "torque",
+                "label": "Torque",
+                "unit": "Nm",
+                "value": 38.0,
+                "contribution": -0.01404,
+                "direction": "decreases"
+              },
+              {
+                "feature": "power",
+                "label": "Mechanical Power",
+                "unit": "W",
+                "value": 5173.156,
+                "contribution": 0.01033,
+                "direction": "increases"
+              },
+              {
+                "feature": "process_temperature",
+                "label": "Process Temperature",
+                "unit": "K",
+                "value": 306.0,
+                "contribution": -0.00234,
+                "direction": "decreases"
+              },
+              {
+                "feature": "type_code",
+                "label": "Machine Variant",
+                "unit": "",
+                "value": 1.0,
+                "contribution": -0.00066,
+                "direction": "decreases"
+              }
+            ],
+            "narrative": "Thermal Gradient (dT) at 8 K, Tool Wear at 90 min and Rotational Speed at 1300 rpm raised the likelihood of HDF from a baseline 20% to 88%.",
+            "method": "Saabas decision-path attribution (exact for tree ensembles)"
+          },
+          "input_warnings": []
+        }
+      }
+    },
+    "validation": {
+      "negative_speed": {
+        "status": 422,
+        "detail": [
+          {
+            "type": "greater_than",
+            "loc": [
+              "body",
+              "rotational_speed"
+            ],
+            "msg": "Input should be greater than 0",
+            "input": -5,
+            "ctx": {
+              "gt": 0.0
+            }
+          }
+        ]
+      },
+      "zero_speed": {
+        "status": 422,
+        "detail": [
+          {
+            "type": "greater_than",
+            "loc": [
+              "body",
+              "rotational_speed"
+            ],
+            "msg": "Input should be greater than 0",
+            "input": 0,
+            "ctx": {
+              "gt": 0.0
+            }
+          }
+        ]
+      },
+      "bad_variant": {
+        "status": 422,
+        "detail": [
+          {
+            "type": "literal_error",
+            "loc": [
+              "body",
+              "machine_type"
+            ],
+            "msg": "Input should be 'L', 'M' or 'H'",
+            "input": "Z",
+            "ctx": {
+              "expected": "'L', 'M' or 'H'"
+            }
+          }
+        ]
+      },
+      "missing_torque": {
+        "status": 422,
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "torque"
+            ],
+            "msg": "Field required",
+            "input": {
+              "machine_type": "M",
+              "air_temperature": 298.0,
+              "process_temperature": 308.0,
+              "rotational_speed": 1558,
+              "tool_wear": 71
+            }
+          }
+        ]
+      },
+      "extreme_torque_accepted": {
+        "status": 200,
+        "warnings": [
+          "Torque = 95 Nm is outside the typical range 3-80 Nm."
+        ]
+      }
+    }
+  },
+  "console_errors": {
+    "01_overview_empty": [],
+    "02_overview_starting": [],
+    "04_machine_picker": [],
+    "05_machine_hmi": [],
+    "06_machine_predicted": [],
+    "07_machine_breached": [],
+    "08_manual_healthy": [],
+    "09_manual_hdf": [],
+    "10_manual_pwf": [],
+    "11_manual_osf": [],
+    "12_manual_twf": [],
+    "13_batch_empty": [],
+    "14_batch_results": [],
+    "15_alarms": [],
+    "16_model_insights": [],
+    "03_overview_running": []
+  },
+  "machine_shots": {
+    "predicted": {
+      "tag": "predicted",
+      "machine_id": "MACHINE-03",
+      "source_machine": "MC-006",
+      "position": 82,
+      "total": 179,
+      "fails_at_cycle": 159,
+      "eventual_failure_mode": "HDF",
+      "lead_time_readings": 78,
+      "lead_time_hours": 13.0,
+      "predicted_class": "HDF",
+      "confidence": 0.4718,
+      "health": 52.2,
+      "health_label": "Degrading",
+      "rul_hours": 166.5,
+      "rul_method": "trend",
+      "rul_confidence": "high",
+      "rul_r2": null,
+      "rul_unbounded": true,
+      "alarm_level": "WARNING",
+      "alarm_mode_name": "Heat Dissipation Failure",
+      "alarm_message": "Heat Dissipation Failure predicted within the next 15 readings (~2.5 operating hours) - 53% confidence. The machine is still running; act now. [Critical pending confirmation: 1 of 3 consecutive readings]",
+      "alarm_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+      "predicted_badge": true,
+      "breached_badge": false,
+      "stress": {
+        "TWF": 0.2037,
+        "HDF": 0.7143,
+        "PWF": 0.0,
+        "OSF": 0.1895
+      },
+      "dominant_mode": "HDF",
+      "sensors": {
+        "machine_type": "M",
+        "air_temperature": 301.01,
+        "process_temperature": 310.01,
+        "rotational_speed": 1164.0,
+        "torque": 46.5,
+        "tool_wear": 48.9
+      },
+      "ground_truth": {
+        "actual_class": "Normal",
+        "horizon_label": "Normal",
+        "eventual_failure_mode": "HDF",
+        "readings_to_failure": 78,
+        "hours_to_failure": 13.0,
+        "has_failed": false,
+        "correct": false
+      }
+    },
+    "breached": {
+      "tag": "breached",
+      "machine_id": "MACHINE-03",
+      "source_machine": "MC-006",
+      "position": 160,
+      "total": 179,
+      "fails_at_cycle": 159,
+      "eventual_failure_mode": "HDF",
+      "lead_time_readings": 58,
+      "lead_time_hours": 9.67,
+      "predicted_class": "HDF",
+      "confidence": 0.9462,
+      "health": 1.5,
+      "health_label": "Critical",
+      "rul_hours": 0.0,
+      "rul_method": "trend",
+      "rul_confidence": "medium",
+      "rul_r2": 0.626,
+      "rul_unbounded": false,
+      "alarm_level": "CRITICAL",
+      "alarm_mode_name": "Heat Dissipation Failure",
+      "alarm_message": "Thermal gradient 8.53 K is below the 8.6 K minimum while speed 1251 rpm is below 1380 rpm.",
+      "alarm_action": "Check the coolant supply and concentration, clean the coolant filter and spindle-chiller fins, verify the spindle cooling fan. Reduce the cutting load until the temperature delta recovers.",
+      "predicted_badge": true,
+      "breached_badge": true,
+      "stress": {
+        "TWF": 0.3908,
+        "HDF": 1.0,
+        "PWF": 0.1417,
+        "OSF": 0.3184
+      },
+      "dominant_mode": "HDF",
+      "sensors": {
+        "machine_type": "M",
+        "air_temperature": 300.17,
+        "process_temperature": 308.7,
+        "rotational_speed": 1251.0,
+        "torque": 40.73,
+        "tool_wear": 93.8
+      },
+      "ground_truth": {
+        "actual_class": "HDF",
+        "horizon_label": "HDF",
+        "eventual_failure_mode": "HDF",
+        "readings_to_failure": 0,
+        "hours_to_failure": 0.0,
+        "has_failed": true,
+        "correct": true
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# ============================================================
+# Runtime-only dependencies for hosting the web app (Render).
+# Same pinned versions as requirements.txt, minus plotting, testing
+# and PDF tooling, so the cloud build is faster and lighter.
+# scikit-learn MUST stay 1.5.2: the saved model was trained with it.
+# ============================================================
+numpy==2.1.3
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.5.2
+joblib==1.4.2
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+python-multipart==0.0.19
+openpyxl==3.1.5
