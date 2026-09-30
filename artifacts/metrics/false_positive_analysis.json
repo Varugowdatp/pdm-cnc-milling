@@ -1,9 +1,0 @@
-{
-  "horizon_readings": 15,
-  "flagged_while_label_normal": 1217,
-  "on_failing_machines": 1025,
-  "on_failing_machines_pct": 84.2,
-  "before_failure": 826,
-  "median_readings_ahead": 34.0,
-  "mean_readings_ahead": 53.22760290556901
-}
